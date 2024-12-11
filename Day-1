@@ -1,0 +1,14 @@
+public int getSecondLargest(int[] arr) {
+        int Largest=-1;
+        int SecondLargest=-1;
+        for (int i : arr) {
+            if (i > Largest) {
+                SecondLargest = Largest; // Update second largest
+                Largest = i; // Update largest
+            } else if (i > SecondLargest && i < Largest) {
+                SecondLargest = i; // Update second largest if it's smaller than largest
+            }
+        }
+
+        return SecondLargest; 
+    }
