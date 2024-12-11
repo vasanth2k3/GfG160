@@ -1,0 +1,18 @@
+void pushZerosToEnd(int[] arr) {
+        int n = arr.length; // Get the length of the array
+        int nonZeroIndex = 0; // Pointer for the position to place non-zero elements
+
+        // Traverse the array and move non-zero elements to the front
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != 0) {
+                arr[nonZeroIndex] = arr[i]; // Place the non-zero element
+                nonZeroIndex++;
+            }
+        }
+
+        // Fill the remaining positions with zeros
+        while (nonZeroIndex < n) {
+            arr[nonZeroIndex] = 0;
+            nonZeroIndex++;
+        }
+    }
