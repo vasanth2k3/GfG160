@@ -1,0 +1,47 @@
+class Solution {
+    void nextPermutation(int[] arr) {
+        int n = arr.length;
+        int pivot = -1;
+
+        // STEP-1: Find the pivot
+        for (int i = n - 2; i >= 0; i--) {
+            if (arr[i] < arr[i + 1]) {
+                pivot = i;
+                break;
+            }
+        }
+
+        // STEP-2: If no pivot is found, reverse the array (last permutation)
+        if (pivot == -1) {
+            reverse(0, n - 1, arr);
+            return;
+        }
+
+        // STEP-3: Find the element just larger than arr[pivot] and swap
+        for (int i = n - 1; i > pivot; i--) {
+            if (arr[i] > arr[pivot]) {
+                swap(i, pivot, arr);
+                break;
+            }
+        }
+
+        // STEP-4: Reverse the elements after the pivot
+        reverse(pivot + 1, n - 1, arr);
+    }
+
+    // Function to reverse a subarray
+    private void reverse(int left, int right, int[] arr) {
+        while (left < right) {
+            swap(left, right, arr);
+            left++;
+            right--;
+        }
+    }
+
+    // Function to swap two elements in an array
+    private void swap(int i, int j, int[] arr) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+}
