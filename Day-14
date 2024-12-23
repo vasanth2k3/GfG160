@@ -1,0 +1,37 @@
+class Solution {
+    public int myAtoi(String s) {
+        int INT_MAX = 2147483647; 
+        int INT_MIN = -2147483648; 
+        
+        int i = 0;
+        int n = s.length();
+        while (i < n && s.charAt(i) == ' ') {
+            i++;
+        }
+        
+        
+        int sign = 1;
+        if (i < n && s.charAt(i) == '-') {
+            sign = -1;
+            i++;
+        } 
+        else if (i < n && s.charAt(i) == '+') {
+            i++;
+        }
+
+        long result = 0; 
+        while (i < n && s.charAt(i) >= '0' && s.charAt(i) <= '9') {
+            result = result * 10 + (s.charAt(i) - '0');
+
+         
+            if (result * sign > INT_MAX) 
+                return INT_MAX;
+            if (result * sign < INT_MIN) 
+                return INT_MIN;
+
+            i++;
+        }
+        
+        return (int) (result * sign);
+    }
+}
