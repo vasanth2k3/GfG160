@@ -1,0 +1,30 @@
+class Solution {
+    // Function to find the smallest positive number missing from the array.
+    public int missingNumber(int[] arr) {
+         Arrays.sort(arr);
+
+    Set<Integer> set = new LinkedHashSet<>();
+    for (int num : arr) {
+        set.add(num);
+    }
+
+    int[] result = new int[set.size()];
+    int index = 0;
+    for (int num : set) {
+        result[index++] = num;
+    }
+
+    int smallestMissing = 1; 
+    for (int num : result) {
+        if (num < smallestMissing) {
+            continue;
+        } else if (num == smallestMissing) {
+            smallestMissing++;
+        } else {
+            break; 
+        }
+    }
+
+    return smallestMissing;
+    }
+}
